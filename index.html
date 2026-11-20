@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fatyma — Web Developer</title>
+<meta name="description" content="Portfolio of Fatyma, a web developer based in the Philippines.">
+<meta property="og:title" content="Fatyma — Web Developer">
+<meta name="theme-color" content="#eef1e6">
+<meta name="color-scheme" content="light dark">
+<meta property="og:description" content="Portfolio of Fatyma, a web developer based in the Philippines.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=DM+Mono&display=swap">
+<style>
+:root{color-scheme:light dark;
+--bg:light-dark(#eef1e6,#0b100c);--fg:light-dark(#142018,#e9f0e4);--mut:light-dark(#566a5a,#93a595);
+--card:light-dark(#dce5d2,#151d17);--acc:light-dark(#1d7a44,#6fdc8c);
+--line:color-mix(in oklab,var(--fg) 20%,transparent);
+--g:clamp(20px,4vw,56px);--e:cubic-bezier(.2,.7,.2,1);
+--f:"Bricolage Grotesque",system-ui,sans-serif;--m:"DM Mono",ui-monospace,monospace}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font:400 1.0625rem/1.55 var(--f);background:var(--bg);color:var(--fg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+[tabindex="-1"]:focus{outline:0}
+.skip{position:fixed;left:var(--g);top:-60px;z-index:20;background:var(--fg);color:var(--bg);padding:10px 16px}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 8px)}
+.mono{font:.75rem/1.4 var(--m);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.u{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s var(--e)}
+.u:hover{background-size:100% 1px}
+h2,.t{font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:-.03em}
+.t{font-size:clamp(2.4rem,7vw,6rem);line-height:.95;letter-spacing:-.04em;font-weight:700}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:99px;background:var(--fg);color:var(--bg);font:.875rem var(--m);border:1px solid var(--fg);cursor:pointer;transition:transform .2s var(--e)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn.o{background:none;color:var(--fg)}
+
+header{position:fixed;inset:0 0 auto;z-index:10;display:flex;justify-content:space-between;align-items:center;
+padding:calc(env(safe-area-inset-top,0px) + 8px) var(--g) 8px;mix-blend-mode:difference;color:#fff}
+.logo{font-weight:700;font-size:1.5rem;min-height:44px;display:inline-flex;align-items:center}
+nav{display:flex;gap:0}
+nav a{min-height:44px;padding:0 8px;display:inline-flex;align-items:center;font:.8125rem var(--m)}
+
+.hero{min-height:100svh;display:grid;align-content:end;gap:28px;padding:120px var(--g) 32px;position:relative;overflow:hidden}
+.hero>*:not(.trail){position:relative;z-index:1}
+.hero h1{font-size:clamp(3.2rem,12vw,11rem);line-height:.88;letter-spacing:-.045em;font-weight:700}
+.hero h1 span{display:block}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.sub{max-width:34ch;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.25}
+.meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;border-top:1px solid var(--line);padding-top:16px}
+.meta a{min-height:44px;display:inline-flex;align-items:center}
+.cue{display:flex;align-items:center;gap:12px}
+.cue::before{content:"";width:40px;height:1px;background:var(--acc);transform-origin:left;animation:line 2s var(--e) infinite alternate}
+.trail{position:absolute;inset:0;z-index:0;pointer-events:none}
+.rip{position:absolute;left:0;top:0;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;border:1.5px solid color-mix(in oklab,var(--fg) 40%,transparent);opacity:0}
+.leaf{position:absolute;left:68%;top:32%;width:clamp(64px,8vw,100px)}
+.leaf svg{display:block;width:100%;fill:var(--acc);overflow:visible;transform:translate(-50%,-50%) rotate(10deg)}
+[data-e]{animation:up .9s var(--e) backwards;animation-delay:calc(var(--i,0)*100ms)}
+@keyframes up{from{opacity:0;transform:translateY(28px)}}
+@keyframes line{from{transform:scaleX(.2)}}
+
+.ph{display:grid;place-items:end start;padding:12px;color:#fff;font:.75rem var(--m);letter-spacing:.08em;text-transform:uppercase;
+background:linear-gradient(135deg,hsl(var(--h) 65% 42%),hsl(calc(var(--h) + 30) 65% 26%))}
+
+.work{position:relative}
+.stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;align-content:center;gap:clamp(20px,4vh,40px);perspective:1400px;padding-block:72px}
+.wh{padding-inline:var(--g);display:flex;justify-content:space-between;align-items:end;gap:16px}
+.wh a{min-height:44px;display:inline-flex;align-items:center}
+.deck{display:flex;gap:clamp(16px,2.5vw,32px);padding-inline:var(--g);width:max-content;transform-style:preserve-3d;
+transform:translateX(min(0px,calc(var(--p,0)*(100vw - 100%)))) rotateY(calc((var(--p,0) - .5)*-22deg));will-change:transform}
+.card{flex:0 0 clamp(260px,38vw,720px);aspect-ratio:4/3;border-radius:20px;padding:clamp(16px,2vw,28px);--h:145;
+display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+background:radial-gradient(circle at var(--x) 0,hsl(var(--h) 80% 55%/.38),transparent 62%),var(--card);
+transition:transform .3s var(--e)}
+.card:hover{transform:translateY(-2px)}.card:active{transform:scale(.99)}
+.card b{display:block;font-size:clamp(1.4rem,3vw,2.4rem);line-height:1.05;letter-spacing:-.02em}
+.card small{color:var(--mut);font:.8125rem var(--m)}
+.card .arr{position:absolute;right:clamp(16px,2vw,28px);top:clamp(16px,2vw,28px);font-size:1.5rem;transition:transform .3s var(--e)}
+.card:hover .arr{transform:translate(2px,-2px)}
+
+.sec{padding:clamp(96px,16vh,160px) var(--g) clamp(64px,12vh,120px)}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(24px,6vw,96px)}
+.about p{font-size:clamp(1.25rem,2.4vw,2rem);line-height:1.25;letter-spacing:-.01em}
+.grp{margin-top:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin-top:10px}
+.chips li,.chip{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font:.8125rem var(--m)}
+.big{display:inline-block;font-size:clamp(1.6rem,4.8vw,4.2rem);line-height:1.05;letter-spacing:-.035em;font-weight:700;margin-block:24px 32px;overflow-wrap:anywhere}
+.cn{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,6vw,96px);align-items:center}
+.pc{justify-self:end;width:100%;max-width:380px}
+.pic{aspect-ratio:4/5;width:100%;perspective:1200px}
+.pic>*{width:100%;height:100%}
+.fp{display:block;position:relative;transform-style:preserve-3d;transition:transform .9s var(--e);background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
+.fp[aria-pressed=true]{transform:rotateY(180deg)}
+.fp>*{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:20px;backface-visibility:hidden}
+.fp>:last-child{transform:rotateY(180deg)}
+:root[data-theme=light] .pic-d,:root[data-theme=dark] .pic-l{display:none}
+.tb{min-width:44px;min-height:44px;display:inline-grid;place-items:center;background:none;border:0;color:inherit;cursor:pointer;transition:transform .2s var(--e)}
+.tb:hover{transform:rotate(15deg)}
+.links{display:flex;flex-wrap:wrap;gap:8px 28px}
+.links a{min-height:44px;display:inline-flex;align-items:center}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0}
+.chip{min-height:44px;padding:0 16px;background:none;color:inherit;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.rows{list-style:none;padding:0;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:3rem 1fr auto auto;gap:16px;align-items:center;min-height:72px;padding:12px 0;border-bottom:1px solid var(--line);transition:padding .3s var(--e)}
+.row:hover{padding-left:12px}
+.row b{font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:-.02em;line-height:1.1}
+
+.facts{display:flex;flex-wrap:wrap;gap:24px 56px;margin:32px 0;border-block:1px solid var(--line);padding-block:20px}
+.pv .lead{font-size:clamp(1.25rem,2.4vw,2rem);line-height:1.25;max-width:40ch;margin-bottom:28px}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:48px}
+.shots .ph,.shots img{aspect-ratio:4/3;width:100%;border-radius:16px;object-fit:cover}
+.next{display:block;margin-top:clamp(64px,12vh,120px);padding-top:24px;border-top:1px solid var(--line)}
+.next b{display:block;font-size:clamp(1.8rem,6vw,4.5rem);letter-spacing:-.03em;line-height:1.05;transition:transform .3s var(--e)}
+.next:hover b{transform:translateX(8px)}
+
+.tarot{display:grid;justify-items:center;gap:20px;perspective:1400px;margin-top:40px;text-align:center}
+.tc{width:min(72vw,280px);aspect-ratio:5/8;position:relative;transform-style:preserve-3d;transition:transform .9s var(--e),translate .3s var(--e);background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit}
+.tc:hover{translate:0 -2px}
+.tc[aria-pressed=true]{transform:rotateY(180deg)}
+.fc{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;border:1px solid var(--line)}
+.bk{border:2px solid var(--acc);background:radial-gradient(circle,var(--card) 0 36%,transparent 37%),repeating-conic-gradient(var(--acc) 0 8deg,var(--bg) 8deg 16deg)}
+.ft{transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:24px 16px;--h:145;
+background:radial-gradient(circle at 50% 0,hsl(var(--h) 80% 55%/.45),transparent 70%),var(--card)}
+.ft i{font:700 4.5rem/1 var(--f);font-style:normal;letter-spacing:-.04em}
+.ft b{font-size:1.5rem;line-height:1.1}
+#rd{max-width:38ch;min-height:4.5em}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:20px var(--g) calc(20px + env(safe-area-inset-bottom,0px))}
+footer a{min-height:44px;display:inline-flex;align-items:center}
+
+@media (max-width:720px){.about,.cn{grid-template-columns:1fr}.pc{justify-self:start;max-width:320px}.row{grid-template-columns:2.5rem 1fr auto}.row .tg{display:none}}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}[data-e],.cue::before{animation:none}.tc,.fp{transition:none}
+.work{height:auto!important}.stick{position:static;height:auto;padding-block:80px}
+.deck{transform:none;width:auto;overflow-x:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+<header>
+  <a class="logo" href="#" data-t="logo" aria-label="Home"></a>
+  <nav aria-label="Main"><a class="u" href="#projects">work</a><a class="u" href="#about">about</a><a class="u" href="#connect">connect</a><a class="u" href="#bored">bored?</a><button class="tb" id="theme" type="button"></button></nav>
+</header>
+
+<main>
+<div id="v-home">
+  <section class="hero" id="hero">
+    <div class="trail" id="trail" aria-hidden="true"><div class="leaf" id="leaf"><svg id="lf" viewBox="0 0 105 185"><path d="M75 14C92 30 104 62 95 90C90 112 72 134 33 150L33 174Q33 181 27 181Q22 181 22 175L23 153C29 118 47 80 62 48C43 80 27 114 17 142C4 120 2 88 10 62C20 36 50 18 75 14Z"/></svg></div></div>
+    <p class="mono" data-e style="--i:0" data-t="role"></p>
+    <h1><span data-e style="--i:1" data-t="h1a"></span><span data-e style="--i:2"><em data-t="h1b"></em></span></h1>
+    <p class="sub" data-e style="--i:3" data-t="sub"></p>
+    <div class="meta mono" data-e style="--i:4">
+      <a class="u" href="#work">01 / Enter portfolio</a>
+      <span class="cue" style="align-self:center">Scroll to change perspective</span>
+    </div>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="wt">
+    <div class="stick">
+      <div class="wh"><h2 id="wt">Selected work</h2><a class="mono u" id="all" href="#projects"></a></div>
+      <div class="deck" id="deck"></div>
+    </div>
+  </section>
+
+  <section class="sec about" id="about">
+    <h2>About</h2>
+    <div><p data-t="about"></p><div id="skills"></div></div>
+  </section>
+
+  <section class="sec cn" id="connect">
+    <div><p class="mono">Connect</p><a class="big u" id="mail"></a><div class="links" id="links"></div></div>
+    <div class="pc"><div class="pic" id="pic"></div><p class="mono" style="margin-top:12px">Click the photo to flip it</p></div>
+  </section>
+</div>
+
+<section class="sec" id="v-projects" hidden>
+  <h1 class="t" tabindex="-1">All work</h1>
+  <p class="mono" id="count" style="margin-top:12px"></p>
+  <div class="filters" id="filters" role="group" aria-label="Filter by type"></div>
+  <ul class="rows" id="rows"></ul>
+</section>
+
+<section class="sec pv" id="v-project" hidden></section>
+
+<section class="sec" id="v-bored" hidden>
+  <h1 class="t" tabindex="-1">Bored?</h1>
+  <div class="tarot">
+    <p class="mono">Your tarot card of the day</p>
+    <button class="tc" id="tc" aria-pressed="false" aria-label="Reveal your card of the day">
+      <span class="fc bk"></span>
+      <span class="fc ft" aria-hidden="true"><i id="tn"></i><b id="tt"></b><span class="mono" id="tk"></span></span>
+    </button>
+    <p id="rd" aria-live="polite">Tap the card to reveal it.</p>
+    <button class="btn o" id="again" hidden>Draw another?</button>
+    <p class="mono">Disclaimer: not intended as actual fortune-telling.</p>
+  </div>
+</section>
+</main>
+
+<footer class="mono"><span>© <span data-t="year"></span> <span data-t="name"></span></span><a class="u" href="#">Back to top</a></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* ===== EDIT YOUR CONTENT HERE ===== */
+const C={
+  name:"Fatyma", logo:"F.", year:"2026",
+  role:"Web developer",
+  h1a:"A different", h1b:"point of view.",
+  sub:"Clean, fast websites with a little personality.",
+  about:"Junior web developer based in the Philippines. I build websites that load fast, read clearly and feel considered, from first sketch to shipped page.",
+  skills:{
+    "Build":["HTML","CSS","JavaScript","PHP","Python","PostgreSQL"],
+    "CMS & commerce":["WordPress","Joomla","Shopify"],
+    "SEO & analytics":["Google Search Console","Google Analytics","Google Tag Manager","PageSpeed"],
+    "Workflow":["Vibe coding","Monday","Slack"]
+  },
+  photos:{ // [front, back] for each mode. Click the photo to flip. URL or data URI. Empty = placeholder
+    dark:["",""],  // front: you sleeping
+    light:["",""]  // front: you with coffee
+  },
+  email:"mariaborja907@gmail.com",
+  links:[["GitHub","https://github.com/fborj/"]],
+  featured:6 // how many projects show in the home carousel (the rest live on the All work page)
+};
+/* Add a project = add one object. Page, list row and carousel card are generated.
+   h = placeholder color (0-240). shots = optional image URLs/data URIs. live/code = optional links. */
+const P=[
+ {title:"Interior Designer Website",tags:["Redesign"],year:"2026",role:"Design & development",stack:["HTML","CSS","JavaScript, Wordpress, PHP"],h:145,live:"",code:"",shots:[],summary:"Created a modern and visually appealing website for an Australian interior designer, showcasing their portfolio and services."},
+ {title:"SorianoLaw Review",tags:["Redesign"],year:"2026",role:"Design and development",stack:["JavaScript", "HTML", "CSS", "Wordpress"],h:60,live:"",code:"",shots:[],summary:"Redesigned a website for SorianoLaw Review, a legal publication, to improve user experience and accessibility. The new design features a clean layout, easy navigation, and optimized performance. The design template is ready for deployment for other clients."},
+ {title:"Empower Anesthesia Texas",tags:["Website Launch"],year:"2026",role:"Development and Backend",stack:["GTM", "Google Analytics", "Joomla", "Scala"],h:195,live:"",code:"",shots:[],summary:"Launched a client website for my workplace, Empower Anesthesia Texas. The website was built using Joomla and Scala, with integrated Google Tag Manager and Google Analytics for tracking and analysis. The website is designed to provide information about the company's services and team."},
+ {title:"Zone 3 Web",tags:["Website"],year:"2026",role:"Development",stack:["HTML","CSS", "Typescript", "Netlify"],h:100,live:"",code:"",shots:[],summary:"Created a responsive and visually appealing website for Zone 3, a local government entity, to enhance their online presence and provide information to the public. Equipped with a rapid response thru their Facebook page"},
+ {title:"Bantay Pahayag",tags:["Web app"],year:"2026",role:"Development",stack:["Flutter, Python"],h:170,live:"",code:"",shots:[],summary:"Thesis Project: Developed a web application that allows users to report and track news articles, promoting transparency and accountability in media. Specialized for Filipino users."},
+];
+/* ===== END CONTENT ===== */
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches, fine=matchMedia("(hover:hover) and (pointer:fine)").matches;
+const pad=n=>String(n).padStart(2,"0"), ph=(h,l)=>`<div class="ph" style="--h:${h}">${l}</div>`;
+P.forEach(p=>p.slug||=p.title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""));
+$$("[data-t]").forEach(e=>e.textContent=C[e.dataset.t]);
+$("#skills").innerHTML=Object.entries(C.skills).map(([g,l])=>`<div class="grp"><p class="mono">${g}</p><ul class="chips">${l.map(s=>`<li>${s}</li>`).join("")}</ul></div>`).join("");
+const fp=(c,s,h,l)=>`<button class="fp ${c}" type="button" aria-pressed="false" aria-label="Flip photo">${[0,1].map(i=>s[i]?`<img src="${s[i]}" alt="Photo of ${C.name}">`:`<div class="ph" style="--h:${h+i*30}">${l[i]}</div>`).join("")}</button>`;
+$("#pic").innerHTML=fp("pic-d",C.photos.dark,195,["Dark mode: sleeping","Dark mode: photo 2"])+fp("pic-l",C.photos.light,60,["Light mode: with coffee","Light mode: photo 2"]);
+$("#pic").onclick=e=>{const b=e.target.closest(".fp");b&&b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true")};
+
+/* theme: follows the device, the nav icon overrides it (remembered) */
+const ICON={dark:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+ light:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'};
+ const tb=$("#theme"),setTheme=t=>{document.documentElement.dataset.theme=t;tb.innerHTML=ICON[t];tb.setAttribute("aria-label",t=="dark"?"Switch to light mode":"Switch to dark mode");const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",t=="dark"?"#0b100c":"#eef1e6")};
+let saved;try{saved=localStorage.getItem("theme")}catch{}
+setTheme(saved||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+tb.onclick=()=>{const t=document.documentElement.dataset.theme=="dark"?"light":"dark";setTheme(t);try{localStorage.setItem("theme",t)}catch{}};
+$("#links").innerHTML=C.links.map(([n,u])=>`<a class="u" href="${u}" rel="noopener">${n} ↗</a>`).join("");
+$("#mail").href="mailto:"+C.email; $("#mail").textContent=C.email;
+$("#all").textContent=`All work (${P.length}) →`;
+$("#deck").innerHTML=P.slice(0,C.featured).map((p,i)=>`<a class="card" href="#p-${p.slug}" style="--x:${[15,75,45][i%3]}%;--h:${p.h}"><span class="mono">${pad(i+1)}</span><span><b>${p.title}</b><small>${p.tags.join(" / ")} / ${p.year}</small></span><span class="arr" aria-hidden="true">↗</span></a>`).join("");
+
+/* all-work list with tag filters */
+const tags=[...new Set(P.flatMap(p=>p.tags))];
+$("#count").textContent=`${P.length} projects`;
+$("#filters").innerHTML=["All",...tags].map((t,i)=>`<button class="chip" aria-pressed="${!i}" data-f="${i?t:""}">${t}</button>`).join("");
+$("#rows").innerHTML=P.map((p,i)=>`<li data-tags="|${p.tags.join("|")}|"><a class="row" href="#p-${p.slug}"><span class="mono">${pad(i+1)}</span><b>${p.title}</b><span class="mono tg">${p.tags.join(" / ")}</span><span class="mono">${p.year}</span></a></li>`).join("");
+$("#filters").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  $$("#filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  $$("#rows li").forEach(li=>li.hidden=b.dataset.f&&!li.dataset.tags.includes("|"+b.dataset.f+"|"))};
+
+/* project page */
+function project(p){const i=P.indexOf(p),n=P[(i+1)%P.length],fact=(k,v)=>`<div><span class="mono">${k}</span><p>${v}</p></div>`;
+  $("#v-project").innerHTML=`<a class="mono u" href="#projects">← All work</a>
+  <h1 class="t" tabindex="-1" style="margin-top:16px">${p.title}</h1>
+  <div class="facts">${fact("Year",p.year)}${fact("Type",p.tags.join(" / "))}${fact("Role",p.role)}${fact("Stack",p.stack.join(", "))}</div>
+  <p class="lead">${p.summary}</p>
+  <div class="links">${p.live?`<a class="btn" href="${p.live}" rel="noopener">View live ↗</a>`:""}${p.code?`<a class="btn o" href="${p.code}" rel="noopener">View code ↗</a>`:""}</div>
+  <div class="shots">${p.shots.length?p.shots.map((s,k)=>`<img src="${s}" alt="${p.title} screenshot ${k+1}" loading="lazy">`).join(""):[1,2,3].map(k=>ph(p.h,"Screenshot "+k)).join("")}</div>
+  <a class="next" href="#p-${n.slug}"><span class="mono">Next project</span><b>${n.title} →</b></a>`}
+
+/* router: one file, plain #hash views (home anchors: work, about, connect) */
+let cur;const wk=$("#work"),deck=$("#deck");
+function layout(){wk.style.height=(innerHeight+Math.max(0,deck.scrollWidth-innerWidth)*1.1)+"px";upd()}
+function route(){
+  const h=location.hash.slice(1),p=P.find(p=>"p-"+p.slug===h);
+  const v=p?"project":h==="bored"?"bored":h==="projects"?"projects":"home",key=v+(p?p.slug:"");
+  $$("main>*").forEach(x=>x.hidden=x.id!=="v-"+v);
+  if(p)project(p);
+  document.title=p?`${p.title} — ${C.name}`:v==="home"?`${C.name} — Web Developer`:`${v==="bored"?"Bored?":"All work"} — ${C.name}`;
+  if(v==="home"){layout();const t=h&&document.getElementById(h);t?t.scrollIntoView():key!==cur&&scrollTo(0,0)}
+  else if(key!==cur){scrollTo(0,0);$("#v-"+v+" h1").focus({preventScroll:true})}
+  cur=key}
+
+/* scroll-driven perspective: one CSS variable, transform-only */
+let raf=0;
+function upd(){raf=0;const r=wk.getBoundingClientRect();
+  wk.style.setProperty("--p",Math.min(1,Math.max(0,-r.top/(r.height-innerHeight||1))).toFixed(4))}
+if(!reduce)addEventListener("scroll",()=>raf||(raf=requestAnimationFrame(upd)),{passive:true});
+addEventListener("resize",()=>{$("#v-home").hidden||layout()});
+addEventListener("hashchange",route);
+
+/* hero: ripples push a floating leaf (GSAP). Desktop: ripples follow the cursor. Touch: slow auto-ripples, tap to drop one */
+const hero=$("#hero"),trail=$("#trail"),leaf=$("#leaf");
+if(window.gsap&&!reduce){
+  const lines=$$(".hero h1 span"),lf=$("#lf");let k=0,lx=-999,ly=-999;
+  trail.insertAdjacentHTML("beforeend",'<i class="rip"></i>'.repeat(14));
+  const rings=$$(".rip");
+  gsap.set(lf,{xPercent:-50,yPercent:-50,rotation:10});
+  gsap.to(lf,{rotation:22,y:6,duration:3.2,ease:"sine.inOut",yoyo:true,repeat:-1});
+  const ripple=(x,y)=>{
+    [0,.18].forEach((d,j)=>{const r=rings[k++%rings.length];gsap.killTweensOf(r);
+      gsap.fromTo(r,{x,y,scale:.15,opacity:j?.3:.55},{scale:j?2.6:3.4,opacity:0,duration:1.7,delay:d,ease:"power2.out"})});
+    const W=hero.clientWidth,H=hero.clientHeight,bx=W*.68,by=H*.32,
+      px=bx+gsap.getProperty(leaf,"x"),py=by+gsap.getProperty(leaf,"y"),dx=px-x,dy=py-y,d=Math.hypot(dx,dy)||1;
+    if(d<440){const f=(1-d/440)*110;  /* the wave reaches the leaf after a short delay and nudges it away */
+      gsap.to(leaf,{x:gsap.utils.clamp(90,W-90,px+dx/d*f)-bx,y:gsap.utils.clamp(120,H-90,py+dy/d*f)-by,
+        rotation:gsap.getProperty(leaf,"rotation")+dx/d*35,duration:2,delay:d/500,ease:"power3.out",overwrite:"auto"})}};
+  if(fine){
+    const qx=lines.map(l=>gsap.quickTo(l,"x",{duration:.8,ease:"power3"})),qy=lines.map(l=>gsap.quickTo(l,"y",{duration:.8,ease:"power3"}));
+    hero.addEventListener("pointermove",e=>{const r=hero.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      lines.forEach((_,i)=>{qx[i]((x/r.width-.5)*-28*(i+1));qy[i]((y/r.height-.5)*-12*(i+1))});
+      if(Math.hypot(x-lx,y-ly)>70){lx=x;ly=y;ripple(x,y)}});
+    hero.addEventListener("pointerleave",()=>lines.forEach((_,i)=>{qx[i](0);qy[i](0)}));
+  }else{
+    hero.addEventListener("pointerdown",e=>{const r=hero.getBoundingClientRect();ripple(e.clientX-r.left,e.clientY-r.top)});
+    let call;const drift=()=>{const t=performance.now()/1000;ripple(hero.clientWidth*(.5+.36*Math.sin(t*.7)),hero.clientHeight*(.45+.28*Math.sin(t*1.1+1)));call=gsap.delayedCall(1.4,drift)};
+    new IntersectionObserver(([e])=>e.isIntersecting?drift():call&&call.kill()).observe(hero);
+  }
+}
+
+/* tarot: same card all day, flips on tap (22 major arcana, own wording) */
+const R="0 I II III IV V VI VII VIII IX X XI XII XIII XIV XV XVI XVII XVIII XIX XX XXI".split(" ");
+const T=[["The Fool","Beginnings","Step in before you feel ready. A first draft beats a perfect plan."],
+["The Magician","Skill","You already have the tools. Use them on one thing today."],
+["The High Priestess","Intuition","Go quiet. The answer is already there under the noise."],
+["The Empress","Nurture","Make something and look after it. Growth needs gentleness."],
+["The Emperor","Structure","Set a clear rule and keep it. Order frees up energy."],
+["The Hierophant","Tradition","Learn from someone who has done it. Try the proven way first."],
+["The Lovers","Choice","A real decision is near. Pick what matches your values."],
+["The Chariot","Drive","Hold steady and point forward. Momentum is on your side."],
+["Strength","Patience","Calm beats force. Stay kind to yourself while you push."],
+["The Hermit","Solitude","Step back and think. Not every answer comes from talking."],
+["Wheel of Fortune","Change","Luck turns. Adapt quickly and the turn works for you."],
+["Justice","Fairness","Check the facts. Honest choices hold up later."],
+["The Hanged Man","Perspective","Pause and look from the other side. Waiting is part of the work."],
+["Death","Endings","Something is finished. Let it go to make room."],
+["Temperance","Balance","Mix, don’t swing. Small steady adjustments win today."],
+["The Devil","Habits","Notice what has a grip on you. You can loosen it."],
+["The Tower","Upheaval","Plans may crack. What falls was never holding you up."],
+["The Star","Hope","Rest and trust. Better days are already forming."],
+["The Moon","Doubt","Things look unclear. Don’t decide on a feeling at night."],
+["The Sun","Joy","Good energy. Share it and finish what you started."],
+["Judgement","Renewal","Time to answer the call. Forgive your past self."],
+["The World","Completion","A cycle closes well. Celebrate, then start the next."]];
+const tc=$("#tc"),again=$("#again");
+const today=()=>{const d=new Date();return((d.getFullYear()*372+d.getMonth()*31+d.getDate())*2654435761>>>0)%22};
+let card=today();
+function face(i){const[n,k]=T[i];$("#tn").textContent=R[i];$("#tt").textContent=n;$("#tk").textContent=k;$(".ft").style.setProperty("--h",60+(i*7)%140)}
+function reveal(i){face(i);card=i;tc.setAttribute("aria-pressed","true");$("#rd").textContent=`${T[i][0]}: ${T[i][1]}. ${T[i][2]}`;again.hidden=false}
+face(card);
+tc.onclick=()=>{if(tc.getAttribute("aria-pressed")==="true"){tc.setAttribute("aria-pressed","false");$("#rd").textContent="Tap the card to reveal it.";again.hidden=true}else reveal(card)};
+again.onclick=()=>{let n;do n=Math.floor(Math.random()*22);while(n===card);
+  tc.setAttribute("aria-pressed","false");setTimeout(()=>reveal(n),reduce?0:500)};
+
+route();
+</script>
+</body>
+</html>
