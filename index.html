@@ -86,10 +86,10 @@ transition:transform .3s var(--e)}
 .sec{padding:clamp(96px,16vh,160px) var(--g) clamp(64px,12vh,120px)}
 .about{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(24px,6vw,96px)}
 .about p{font-size:clamp(1.25rem,2.4vw,2rem);line-height:1.25;letter-spacing:-.01em}
+.about p+p{margin-top:1em}
 .grp{margin-top:28px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin-top:10px}
 .chips li,.chip{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font:.8125rem var(--m)}
-.big{display:inline-block;font-size:clamp(1.6rem,4.8vw,4.2rem);line-height:1.05;letter-spacing:-.035em;font-weight:700;margin-block:24px 32px;overflow-wrap:anywhere}
 .cn{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,6vw,96px);align-items:center}
 .pc{justify-self:end;width:100%;max-width:380px}
 .pic{aspect-ratio:4/5;width:100%;perspective:1200px}
@@ -102,6 +102,7 @@ transition:transform .3s var(--e)}
 .tb{min-width:44px;min-height:44px;display:inline-grid;place-items:center;background:none;border:0;color:inherit;cursor:pointer;transition:transform .2s var(--e)}
 .tb:hover{transform:rotate(15deg)}
 .links{display:flex;flex-wrap:wrap;gap:8px 28px}
+.cn .links{margin-top:24px}
 .links a{min-height:44px;display:inline-flex;align-items:center}
 
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0}
@@ -116,6 +117,17 @@ transition:transform .3s var(--e)}
 .pv .lead{font-size:clamp(1.25rem,2.4vw,2rem);line-height:1.25;max-width:40ch;margin-bottom:28px}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin-top:48px}
 .shots .ph,.shots img{aspect-ratio:4/3;width:100%;border-radius:16px;object-fit:cover}
+.comparison{margin-top:48px;padding:clamp(16px,3vw,32px);border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.comparison h2{font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:20px}
+.comparison-slider{position:relative;overflow:hidden;aspect-ratio:4/3;border-radius:12px;--split:50%;touch-action:pan-y}
+.comparison-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.comparison-after{clip-path:inset(0 0 0 var(--split))}
+.comparison-divider{position:absolute;inset:0 auto 0 var(--split);width:2px;background:#fff;transform:translateX(-50%);pointer-events:none}
+.comparison-handle{position:absolute;left:var(--split);top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:2px solid #fff;border-radius:50%;background:#142018;color:#fff;display:grid;place-items:center;pointer-events:none;box-shadow:0 2px 8px #0008}
+.comparison-label{position:absolute;top:12px;padding:5px 8px;border-radius:6px;background:#000b;color:#fff;font:.7rem var(--m);letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+.comparison-label.before{left:12px}.comparison-label.after{right:12px}
+.comparison-slider input{position:absolute;left:0;top:50%;transform:translateY(-50%);width:100%;height:44px;margin:0;opacity:0;cursor:ew-resize}
+.comparison-slider:focus-within .comparison-handle{outline:3px solid var(--acc);outline-offset:3px}
 .next{display:block;margin-top:clamp(64px,12vh,120px);padding-top:24px;border-top:1px solid var(--line)}
 .next b{display:block;font-size:clamp(1.8rem,6vw,4.5rem);letter-spacing:-.03em;line-height:1.05;transition:transform .3s var(--e)}
 .next:hover b{transform:translateX(8px)}
@@ -140,6 +152,7 @@ footer a{min-height:44px;display:inline-flex;align-items:center}
 html{scroll-behavior:auto}[data-e],.cue::before{animation:none}.tc,.fp{transition:none}
 .work{height:auto!important}.stick{position:static;height:auto;padding-block:80px}
 .deck{transform:none;width:auto;overflow-x:auto}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.5s}
 </style>
 </head>
 <body>
@@ -164,24 +177,24 @@ html{scroll-behavior:auto}[data-e],.cue::before{animation:none}.tc,.fp{transitio
 
   <section class="work" id="work" aria-labelledby="wt">
     <div class="stick">
-      <div class="wh"><h2 id="wt">Selected work</h2><a class="mono u" id="all" href="#projects"></a></div>
+      <div class="wh"><h2 id="wt">Featured work</h2><a class="mono u" id="all" href="#projects"></a></div>
       <div class="deck" id="deck"></div>
     </div>
   </section>
 
   <section class="sec about" id="about">
     <h2>About</h2>
-    <div><p data-t="about"></p><div id="skills"></div></div>
+    <div><p data-t="about"></p><p data-t="aboutWork"></p><p data-t="aboutPersonal"></p><div id="skills"></div></div>
   </section>
 
   <section class="sec cn" id="connect">
-    <div><p class="mono">Connect</p><a class="big u" id="mail"></a><div class="links" id="links"></div></div>
-    <div class="pc"><div class="pic" id="pic"></div><p class="mono" style="margin-top:12px">Click the photo to flip it</p></div>
+    <div><p class="mono">Connect</p><div class="links" id="links"></div></div>
+    <div class="pc"><div class="pic" id="pic"></div><p class="mono" style="margin-top:12px">Click to flip</p></div>
   </section>
 </div>
 
 <section class="sec" id="v-projects" hidden>
-  <h1 class="t" tabindex="-1">All work</h1>
+  <h1 class="t" tabindex="-1">Featured Works</h1>
   <p class="mono" id="count" style="margin-top:12px"></p>
   <div class="filters" id="filters" role="group" aria-label="Filter by type"></div>
   <ul class="rows" id="rows"></ul>
@@ -211,10 +224,12 @@ html{scroll-behavior:auto}[data-e],.cue::before{animation:none}.tc,.fp{transitio
 /* ===== EDIT YOUR CONTENT HERE ===== */
 const C={
   name:"Fatyma", logo:"F.", year:"2026",
-  role:"Web developer",
+  role:"Fatyma Borja - Web developer",
   h1a:"A different", h1b:"point of view.",
   sub:"Clean, fast websites with a little personality.",
   about:"Junior web developer based in the Philippines. I build websites that load fast, read clearly and feel considered, from first sketch to shipped page.",
+  aboutWork:"At INFINI Marketing, I optimize and secure client websites. I currently handle 100+ websites, and enjoy building small web apps and exploring new technologies.",
+  aboutPersonal:"Outside work, I enjoy gaming and fixing old laptops and phones.",
   skills:{
     "Build":["HTML","CSS","JavaScript","PHP","Python","PostgreSQL"],
     "CMS & commerce":["WordPress","Joomla","Shopify"],
@@ -227,16 +242,17 @@ const C={
   },
   email:"mariaborja907@gmail.com",
   links:[["GitHub","https://github.com/fborj/"]],
-  featured:6 // how many projects show in the home carousel (the rest live on the All work page)
+  featured:6 // how many projects show in the home carousel (the rest live on the Featured Works page)
 };
 /* Add a project = add one object. Page, list row and carousel card are generated.
-   h = placeholder color (0-240). shots = optional image URLs/data URIs. live/code = optional links. */
+   h = placeholder color (0-240). shots = optional image URLs/data URIs.
+   comparison = optional before/after images. live/code = optional links. */
 const P=[
- {title:"Interior Designer Website",tags:["Redesign"],year:"2026",role:"Design & development",stack:["HTML","CSS","JavaScript, Wordpress, PHP"],h:145,live:"",code:"",shots:[],summary:"Created a modern and visually appealing website for an Australian interior designer, showcasing their portfolio and services."},
- {title:"SorianoLaw Review",tags:["Redesign"],year:"2026",role:"Design and development",stack:["JavaScript", "HTML", "CSS", "Wordpress"],h:60,live:"",code:"",shots:[],summary:"Redesigned a website for SorianoLaw Review, a legal publication, to improve user experience and accessibility. The new design features a clean layout, easy navigation, and optimized performance. The design template is ready for deployment for other clients."},
- {title:"Empower Anesthesia Texas",tags:["Website Launch"],year:"2026",role:"Development and Backend",stack:["GTM", "Google Analytics", "Joomla", "Scala"],h:195,live:"",code:"",shots:[],summary:"Launched a client website for my workplace, Empower Anesthesia Texas. The website was built using Joomla and Scala, with integrated Google Tag Manager and Google Analytics for tracking and analysis. The website is designed to provide information about the company's services and team."},
- {title:"Zone 3 Web",tags:["Website"],year:"2026",role:"Development",stack:["HTML","CSS", "Typescript", "Netlify"],h:100,live:"",code:"",shots:[],summary:"Created a responsive and visually appealing website for Zone 3, a local government entity, to enhance their online presence and provide information to the public. Equipped with a rapid response thru their Facebook page"},
- {title:"Bantay Pahayag",tags:["Web app"],year:"2026",role:"Development",stack:["Flutter, Python"],h:170,live:"",code:"",shots:[],summary:"Thesis Project: Developed a web application that allows users to report and track news articles, promoting transparency and accountability in media. Specialized for Filipino users."},
+ {title:"Interior Designer Website",tags:["Redesign"],year:"2026",role:"Design & development",stack:["HTML","CSS","JavaScript, Wordpress, PHP"],h:145,live:"",code:"",shots:["shots/interior-designer-combo.png","shots/interior-designer-mobile.png"],comparison:{before:"shots/interior-designer-before-desktop.png",after:"shots/interior-designer-desktop.png"},summary:"Created a modern and visually appealing website for an Australian interior designer, showcasing their portfolio and services."},
+ {title:"SorianoLaw Review",tags:["Redesign"],year:"2026",role:"Design and development",stack:["JavaScript", "HTML", "CSS", "Wordpress"],h:60,live:"https://dev-sorianolaw.pantheonsite.io/",code:"",shots:["shots/sorianolaw-combo.png","shots/sorianolaw-mobile.png"],comparison:{before:"shots/sorianolaw-before-desktop.png",after:"shots/sorianolaw-desktop.png"},summary:"Redesigned a website for SorianoLaw Review, a legal publication, to improve user experience and accessibility. The new design features a clean layout, easy navigation, and optimized performance. The design template is ready for deployment for other clients."},
+ {title:"Empower Anesthesia Texas",tags:["Website Launch"],year:"2026",role:"Development and Backend",stack:["GTM", "Google Analytics", "Joomla", "Scala"],h:195,live:"https://empoweranesthesia.com/",code:"",shots:["shots/empower-anesthesia-combo.png","shots/empower-anesthesia-mobile.png","shots/empower-anesthesia-desktop.png"],summary:"Launched a client website for my workplace, Empower Anesthesia Texas. The website was built using Joomla and Scala, with integrated Google Tag Manager and Google Analytics for tracking and analysis. The website is designed to provide information about the company's services and team."},
+ {title:"Zone 3 Web",tags:["Website"],year:"2026",role:"Development",stack:["HTML","CSS", "Typescript", "Netlify"],h:100,live:"https://zone3dasmarinascaviteweb.netlify.app/",code:"",shots:["shots/zone3-combo.png","shots/zone3-mobile.png","shots/zone3-desktop.png"],summary:"Created a responsive and visually appealing website for Zone 3, a local government entity, to enhance their online presence and provide information to the public. Equipped with a rapid response thru their Facebook page"},
+ {title:"Bantay Pahayag",tags:["Web app"],year:"2026",role:"Development",stack:["Flutter, Python"],h:170,live:"https://bantaypahayag.netlify.app/",code:"",shots:["shots/bantaypahayag-combo.png","shots/bantaypahayag-mobile.png","shots/bantaypahayag-desktop.png"],summary:"Thesis Project: Developed a web application that allows users to report and track news articles, promoting transparency and accountability in media. Specialized for Filipino users."},
 ];
 /* ===== END CONTENT ===== */
 
@@ -256,10 +272,11 @@ const ICON={dark:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" st
  const tb=$("#theme"),setTheme=t=>{document.documentElement.dataset.theme=t;tb.innerHTML=ICON[t];tb.setAttribute("aria-label",t=="dark"?"Switch to light mode":"Switch to dark mode");const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",t=="dark"?"#0b100c":"#eef1e6")};
 let saved;try{saved=localStorage.getItem("theme")}catch{}
 setTheme(saved||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
-tb.onclick=()=>{const t=document.documentElement.dataset.theme=="dark"?"light":"dark";setTheme(t);try{localStorage.setItem("theme",t)}catch{}};
-$("#links").innerHTML=C.links.map(([n,u])=>`<a class="u" href="${u}" rel="noopener">${n} ↗</a>`).join("");
-$("#mail").href="mailto:"+C.email; $("#mail").textContent=C.email;
-$("#all").textContent=`All work (${P.length}) →`;
+tb.onclick=()=>{const t=document.documentElement.dataset.theme=="dark"?"light":"dark",change=()=>setTheme(t);
+  if(!reduce&&document.startViewTransition)document.startViewTransition(change);else change();
+  try{localStorage.setItem("theme",t)}catch{}};
+$("#links").innerHTML=C.links.map(([n,u])=>`<a class="u" href="${u}" rel="noopener">${n} ↗</a>`).join("")+`<a class="btn" href="mailto:${C.email}">Connect with Fatyma</a>`;
+$("#all").textContent=`Featured Works (${P.length}) →`;
 $("#deck").innerHTML=P.slice(0,C.featured).map((p,i)=>`<a class="card" href="#p-${p.slug}" style="--x:${[15,75,45][i%3]}%;--h:${p.h}"><span class="mono">${pad(i+1)}</span><span><b>${p.title}</b><small>${p.tags.join(" / ")} / ${p.year}</small></span><span class="arr" aria-hidden="true">↗</span></a>`).join("");
 
 /* all-work list with tag filters */
@@ -273,13 +290,28 @@ $("#filters").onclick=e=>{const b=e.target.closest("button");if(!b)return;
 
 /* project page */
 function project(p){const i=P.indexOf(p),n=P[(i+1)%P.length],fact=(k,v)=>`<div><span class="mono">${k}</span><p>${v}</p></div>`;
-  $("#v-project").innerHTML=`<a class="mono u" href="#projects">← All work</a>
+  $("#v-project").innerHTML=`<a class="mono u" href="#projects">← Featured Works</a>
   <h1 class="t" tabindex="-1" style="margin-top:16px">${p.title}</h1>
   <div class="facts">${fact("Year",p.year)}${fact("Type",p.tags.join(" / "))}${fact("Role",p.role)}${fact("Stack",p.stack.join(", "))}</div>
   <p class="lead">${p.summary}</p>
   <div class="links">${p.live?`<a class="btn" href="${p.live}" rel="noopener">View live ↗</a>`:""}${p.code?`<a class="btn o" href="${p.code}" rel="noopener">View code ↗</a>`:""}</div>
+  ${p.comparison?`<section class="comparison" aria-label="${p.title} before and after redesign">
+    <h2>Before &amp; after</h2>
+    <div class="comparison-slider" style="--split:50%">
+      <img src="${p.comparison.before}" alt="${p.title} before redesign" loading="lazy">
+      <img class="comparison-after" src="${p.comparison.after}" alt="${p.title} after redesign" loading="lazy">
+      <span class="comparison-divider" aria-hidden="true"></span>
+      <span class="comparison-handle" aria-hidden="true">↔</span>
+      <span class="comparison-label before" aria-hidden="true">Before</span>
+      <span class="comparison-label after" aria-hidden="true">After</span>
+      <input type="range" min="0" max="100" value="50" aria-label="Adjust before and after comparison">
+    </div>
+  </section>`:""}
   <div class="shots">${p.shots.length?p.shots.map((s,k)=>`<img src="${s}" alt="${p.title} screenshot ${k+1}" loading="lazy">`).join(""):[1,2,3].map(k=>ph(p.h,"Screenshot "+k)).join("")}</div>
   <a class="next" href="#p-${n.slug}"><span class="mono">Next project</span><b>${n.title} →</b></a>`}
+$("#v-project").addEventListener("input",e=>{
+  if(e.target.matches(".comparison-slider input"))e.target.parentElement.style.setProperty("--split",`${e.target.value}%`);
+});
 
 /* router: one file, plain #hash views (home anchors: work, about, connect) */
 let cur;const wk=$("#work"),deck=$("#deck");
@@ -289,7 +321,7 @@ function route(){
   const v=p?"project":h==="bored"?"bored":h==="projects"?"projects":"home",key=v+(p?p.slug:"");
   $$("main>*").forEach(x=>x.hidden=x.id!=="v-"+v);
   if(p)project(p);
-  document.title=p?`${p.title} — ${C.name}`:v==="home"?`${C.name} — Web Developer`:`${v==="bored"?"Bored?":"All work"} — ${C.name}`;
+  document.title=p?`${p.title} — ${C.name}`:v==="home"?`${C.name} — Web Developer`:`${v==="bored"?"Bored?":"Featured Works"} — ${C.name}`;
   if(v==="home"){layout();const t=h&&document.getElementById(h);t?t.scrollIntoView():key!==cur&&scrollTo(0,0)}
   else if(key!==cur){scrollTo(0,0);$("#v-"+v+" h1").focus({preventScroll:true})}
   cur=key}
